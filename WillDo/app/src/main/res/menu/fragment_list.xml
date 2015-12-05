@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/list_item_new"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/new_item"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/list_synch"
+        android:title="@string/menu_synch"
+        app:showAsAction="always"/>
+
+    <!--using searchView to enable search feature-->
+    <!--
+    <item
+        android:id="@+id/menu_item_search"
+        android:title="@string/search_item"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        android:actionViewClass="android.widget.SearchView"/>
+
+    <Item
+        android:id="@+id/menu_item_clear_search"
+        android:title="@string/clear_search"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        app:showAsAction="ifRoom"/>
+    -->
+</menu>

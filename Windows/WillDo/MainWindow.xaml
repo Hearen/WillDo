@@ -1,0 +1,130 @@
+﻿<Window x:Class="WillDo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mycontrols ="clr-namespace:WillDo.MyControls"
+        xmlns:myclass ="clr-namespace:WillDo.MyClass"
+        Title="MainWindow" MinHeight="700" MinWidth="100" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <myclass:DeleteToTextDecorator x:Key="deleteConverter"></myclass:DeleteToTextDecorator>
+        <!--Data templates-->
+        <!--
+        <DataTemplate x:Key="idDT">
+            <TextBox x:Name="idTBX" Text="{Binding ID}" Foreground="{Binding Color}" Width="30" GotFocus="textB_GotFocus"/>
+        </DataTemplate>
+        -->
+        <DataTemplate x:Key="titleDT">
+            <TextBox x:Name="titleTBX" Text="{Binding Title}" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" Foreground="{Binding Color}" Width="750" GotFocus="textB_GotFocus"/>
+        </DataTemplate>
+        <DataTemplate x:Key="progressDT">
+            <TextBlock x:Name="progressTBk" Text="{Binding Progress}" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" TextAlignment="Center" Foreground="{Binding Color}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="createdDT">
+            <TextBlock x:Name="createdTBK" Text="{Binding Created}" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" TextAlignment="Center" Foreground="{Binding Color}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="dueDT">
+            <TextBlock x:Name="dueTBK" Text="{Binding Due}" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" HorizontalAlignment="Center" TextAlignment="Center" Foreground="{Binding Color}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="categoryDT">
+            <TextBlock x:Name="categoryTBK" Text="{Binding Category}" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" HorizontalAlignment="Center" TextAlignment="Center" Foreground="{Binding Color}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="priorityDT">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Fill="{Binding PriorityColor}" Width="15" Height="15" Margin="3"/>
+                <TextBlock x:Name="priorityTBX" Text="{Binding Priority}" TextAlignment="Center" Foreground="{Binding Color}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="locationDT">
+            <TextBlock x:Name="locationTBK" Text="{Binding Location }" TextDecorations="{Binding Path = IsDeleted,  Converter={StaticResource deleteConverter}}" TextAlignment="Center" Foreground="{Binding Color}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="completeDT">
+            <CheckBox x:Name ="completeCB" IsChecked="{Binding IsComplete }" Foreground="{Binding Color}"/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <!--header-->
+        <GroupBox Header="Filter by" Grid.ColumnSpan="2" Grid.Row="0" Margin="3">
+            <StackPanel Orientation="Horizontal">
+                <!--
+            <TextBlock Text="Filter by: " Margin="10,20,10,10" FontSize="15"/>
+            -->
+                <mycontrols:AttributeItemView x:Name="showItem" Width="120" Margin="10"/>
+                <mycontrols:TitleComboControl x:Name="titleItem" Width="120" Margin="5"/>
+                <mycontrols:AttributeItemView x:Name="dueItem" Width="150" Margin="10"/>
+                <mycontrols:PriorityControl x:Name="abovePriorityItem" Width="120" Margin="10"/>
+                <mycontrols:HCategoryControl x:Name="categoryItem" Width="120" Margin="5"/>
+                <mycontrols:HLocationControl x:Name="hLocationItem" Width="140" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+        
+        <!--listview-->
+        <Grid Grid.Column="0" Grid.Row ="1">
+            <!-- list box -->
+            <mycontrols:SortableListView x:Name="listViewItem" LostFocus="listViewItem_LostFocus" SelectionChanged="listViewItem_SelectionChanged">
+                <mycontrols:SortableListView.View>
+                    <GridView>
+                        <!--
+                        <GridViewColumn Header="ID" Width="100" mycontrols:SortableListView.SortPropertyName="ID" CellTemplate="{StaticResource idDT}"/>
+                        -->
+                        <GridViewColumn Header="Title" Width="100" mycontrols:SortableListView.SortPropertyName="Title" CellTemplate="{StaticResource titleDT}"/>
+                        <GridViewColumn Header="%" Width="50" CellTemplate="{StaticResource progressDT}"/>
+                        <GridViewColumn Header="Created" Width="150" mycontrols:SortableListView.SortPropertyName="Created" CellTemplate="{StaticResource createdDT}"/>
+                        <GridViewColumn Header="Due" Width="150" mycontrols:SortableListView.SortPropertyName="Due" CellTemplate="{StaticResource dueDT}"/>
+                        <GridViewColumn Header="Cat." Width="100" mycontrols:SortableListView.SortPropertyName="Category" CellTemplate="{StaticResource categoryDT}"/>
+                        <GridViewColumn Header="Priority" Width="50" mycontrols:SortableListView.SortPropertyName="Priority" CellTemplate="{StaticResource priorityDT}"/>
+                        <GridViewColumn Header="Location" Width="100" mycontrols:SortableListView.SortPropertyName="Location" CellTemplate="{StaticResource locationDT}"/>
+                        <GridViewColumn Header="√" Width="50" mycontrols:SortableListView.SortPropertyName="IsComplete" CellTemplate="{StaticResource completeDT}"/>
+                    </GridView>
+                </mycontrols:SortableListView.View>
+            </mycontrols:SortableListView>
+        </Grid>
+        <!--Side-->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="42"/>
+            </Grid.RowDefinitions>
+            <!-- add delete password & trash-->
+            <TextBlock Grid.Row ="0" Text="Comment"/>
+            <TextBox x:Name="commentTextBox" LostFocus="commentTextBox_LostFocus" Grid.Row="1" MinHeight="100" TextWrapping="Wrap" TextAlignment="Justify"/>
+            <Button x:Name="addButton" Click="addButton_Click" Grid.Row="2" Content="Add" Height="40" Margin="1"/>
+            <Button x:Name="restoreButton" Click="restoreButton_Click" Visibility="Collapsed" Grid.Row="2" Content="Restore" Height="40" Margin="1"/>
+            <Button x:Name="deleteButton" Click="deleteButton_Click" Grid.Row ="3" Content="Delete"  Height="40" Margin="1"/>
+            
+            <Button x:Name="pwdButton" Grid.Row="4" Content="Password"  Height="40" Margin="1"/>
+            <Button x:Name="synchButton" Click="synchButton_Click" Grid.Row="5" Content="Synch"  Height="40" Margin="1"/>
+            <Button x:Name="todoButton" Click="todoButton_Click" Grid.Row="6" Content="ToDoList"  Height="40" Margin="1"/>
+            <Button x:Name="trashButton" Click="trashButton_Click" Grid.Row="7" Content="Trash"  Height="40" Margin="1"/>
+        </Grid>
+        
+        <!--foot-->
+        <GroupBox Header="Edition" Grid.ColumnSpan="2" Grid.Row="2" Margin="3">
+            <StackPanel  Orientation="Horizontal">
+                <mycontrols:PriorityControl x:Name="priorityItem" Width="130" Margin="10"/>
+                <mycontrols:AttributeItemView x:Name="progressItem" Width="100" Margin="10"/>
+                <!--currently useless
+            <mycontrols:CalendarBoxControl x:Name="fStartedItem" Width="150" Margin="10"/>
+            -->
+                <mycontrols:CalendarBoxControl x:Name="fDueItem" Width="150" Margin="10"/>
+                <mycontrols:ColorSelectorControl x:Name="colorItem" Width="120" Margin="10"/>
+                <mycontrols:FCategoryControl x:Name="fCategoryItem" Width="120" Margin="5"/>
+                <mycontrols:FLocationControl x:Name="fLocationItem" Width="140" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
