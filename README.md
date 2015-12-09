@@ -18,3 +18,5 @@ In this report, section one and section two will be used to explain some basic i
 
 # Additional
 For more detailed information, you may check it in doc.
+Author: LHearen
+E-mail: LHearen@126.com
