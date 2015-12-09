@@ -19,5 +19,5 @@ In the doc part, section one and section two will be used to explain some basic 
 # Additional
 For more detailed information, you may check it in doc.
 There are still many problems inside this system, if these problems ever make you confused, please do not hesitate to contact me.
-Author: LHearen
-E-mail: LHearen@126.com
+* Author: LHearen
+* E-mail: LHearen@126.com
