@@ -1,10 +1,18 @@
-# Introduction
+### Introduction
 --------------
 Nowadays, the to-do list management is becoming more and more critical in our daily life for memos and reminders to improve our life quality and working efficiency. This little project is trying to provide a handy tool to manage them not only in PC but in Mobile Phone which is gradually becoming the most important part of our everyday life - an essential equipment.
 
-With the development of the mobile phones, more and more attention and manpower poured into mobile applications development. Nowadays lots of applications have been produced but there are still some ideas that can be further fulfilled and polished, considering this situation I chose a topic about ToDoList which is called formally GTD system abbreviated from Get Things Done; though there are many developers at home and abroad, I still want to have a try to challenge myself in this field with bran-new developing skills (for me only), mobile development in Android, Windows client using WPF as presenter and server using C++ network programming which are completely strange for me who only tried C, java, Win Form, Windows Phone and have some basic project experience. Here I will try my best to display my current work concretely including server side, Windows client and Android client.
+Under this situation I chose a topic about ToDoList which is called formally GTD system abbreviated from Get Things Done; though there are many developers at home and abroad, I still want to have a try to challenge myself in this field with bran-new developing skills (for me of course), mobile development in Android, Windows client using WPF as presenter and server using C++ network programming which are completely strange for me who only tried C, java, Win Form, Windows Phone and have some basic project experience. Here I will try my best to display my current work concretely including server side, Windows client and Android client.
 
-# Specification
+### Features in Windows Client
+
+The basic information we have to provide here comprising:
+- title which will remind the user what the topic is all that task about; 
+- created and due time used to help the user to control the progress;
+- a progress attribute will also be included to customize the overall status of the task;
+- priority used to assist the user to pay more attention to the more critical affairs;
+- location and category used to facilitate filtering and reminding the details of the to-do task and some other auxiliary attributes as shown in the following Fig. 6.
+
 There are two different platforms where this application can run smoothly Windows 7 or Windows 8 for Windows client and Android for mobile client and to support these clients, there is a server designed to synchronize the data between them to stay consistent.
 
 There are several parts about this system and in each part we can have so many features to accomplish and polish but due to the time limitation and personal reason I will only achieve four main parts in this system including a server accomplished by C++ which I plan to use Node.js to replace in the near future, a Windows client by C# using WPF to accomplish the presenter layer one of whose outstanding features is binding which will be displayed more vividly in doc part, an Android client by java and a Web client which will be finished in the near future too.
